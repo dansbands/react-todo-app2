@@ -3,11 +3,22 @@ import React from 'react'
 class Todo extends React.Component {
   render () {
     console.log('Todo', this.props);
+    let panelText = this.props.editing === this.props.index ? "panel-text editing" : "panel-text"
     return (
       <div className="panel-wrapper">
         <div className="panel panel-default width-80">
           <div className="panel-body">
-            {this.props.data}
+            {this.props.editing === this.props.index ? (
+              <form onSubmit={this.props.submitEdit}>
+                <input value={this.props.data}></input>
+              </form>
+            ) : (
+              <span
+                className={panelText}
+                onClick={() => this.props.toggleEdit(this.props.index)}>
+                {this.props.data}
+              </span>
+            )}
             <span
               className="glyphicon glyphicon-trash pull-right"
               onClick={() => this.props.onDelete(this.props.index)}

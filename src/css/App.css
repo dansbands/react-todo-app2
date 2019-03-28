@@ -60,3 +60,7 @@
 .chevrons > span:hover {
   color: lightblue;
 }
+
+.editing {
+  border-bottom: 1px solid green;
+}

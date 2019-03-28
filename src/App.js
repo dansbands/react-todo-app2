@@ -8,6 +8,7 @@ class App extends Component {
   state = {
     value: '',
     todos: ['abc', '123', 'howdy'],
+    editing: -1,
   }
 
   handleChange = e => {
@@ -36,14 +37,27 @@ class App extends Component {
 
   handleReorderDown = index => {
     let array = this.state.todos;
+
     if (index < array.length - 1) {
       array.splice(index + 1, 0, array.splice(index, 1)[0]);
       this.setState({ todos: array })
     }
   }
 
-  handleEdit = e => {
+  toggleEdit = (index) => {
+    let value = this.state.todos[index]
 
+    this.setState({
+      editing: index, 
+      editValue: value
+    })
+  }
+
+  submitEdit = e => {
+    this.setState({
+
+      editing: -1,
+    })
   }
 
   handleDelete = index => {
@@ -60,6 +74,10 @@ class App extends Component {
           key={idx}
           data={todo}
           index={idx}
+          editing={this.state.editing}
+          toggleEdit={this.toggleEdit}
+          handleEdit={this.handleChange}
+          submitEdit={this.submitEdit}
           orderUp={this.handleReorderUp}
           orderDown={this.handleReorderDown}
           onDelete={this.handleDelete}/>
