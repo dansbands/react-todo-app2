@@ -1,25 +1,51 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './css/App.css';
+
+import Input from './components/input.js'
+import Todo from './components/todo.js'
 
 class App extends Component {
+  state = {
+    value: '',
+    todos: [],
+  }
+
+  handleChange = e => {
+    this.setState({ value: e.target.value })
+  }
+
+  handleSubmit = e => {
+    e.preventDefault()
+    this.setState({
+      todos: [
+        ...this.state.todos,
+        this.state.value
+      ],
+      value: ''
+    })
+  }
+
+  renderTodos = e => {
+    return this.state.todos.map((todo, idx) => {
+      console.log('render todo', todo);
+      return <Todo key={idx} data={todo} />
+    })
+  }
+
   render() {
+    // console.log('todos', this.state);
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <h3>React To-Do App</h3>
+        <Input
+          value={this.state.value}
+          onChange={this.handleChange}
+          onSubmit={this.handleSubmit}
+        />
+        <ul>
+          {this.renderTodos()}
+        </ul>
+
       </div>
     );
   }
