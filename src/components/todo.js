@@ -9,8 +9,9 @@ class Todo extends React.Component {
         <div className="panel panel-default width-80">
           <div className="panel-body">
             {this.props.editing === this.props.index ? (
-              <form onSubmit={this.props.submitEdit}>
-                <input value={this.props.data}></input>
+              <form onSubmit={() => this.props.submitEdit(this.props.index)}>
+                <input
+                  value={this.props.dataToEdit} onChange={this.props.handleEdit}></input>
               </form>
             ) : (
               <span

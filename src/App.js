@@ -48,14 +48,24 @@ class App extends Component {
     let value = this.state.todos[index]
 
     this.setState({
-      editing: index, 
+      editing: index,
       editValue: value
     })
   }
 
-  submitEdit = e => {
+  handleEdit = e => {
     this.setState({
+      editValue: e.target.value
+    })
+  }
 
+  submitEdit = index => {
+    let array = this.state.todos;
+    array[index] = this.state.editValue
+
+    this.setState({
+      todos: array,
+      editValue: '',
       editing: -1,
     })
   }
@@ -75,8 +85,9 @@ class App extends Component {
           data={todo}
           index={idx}
           editing={this.state.editing}
+          dataToEdit={this.state.editValue}
           toggleEdit={this.toggleEdit}
-          handleEdit={this.handleChange}
+          handleEdit={this.handleEdit}
           submitEdit={this.submitEdit}
           orderUp={this.handleReorderUp}
           orderDown={this.handleReorderDown}
