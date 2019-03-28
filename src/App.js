@@ -7,7 +7,7 @@ import Todo from './components/todo.js'
 class App extends Component {
   state = {
     value: '',
-    todos: [],
+    todos: ['abc'],
   }
 
   handleChange = e => {
@@ -25,10 +25,27 @@ class App extends Component {
     })
   }
 
+  handleEdit = e => {
+    
+  }
+
+  handleDelete = index => {
+    let array = this.state.todos;
+    array.splice(index, 1);
+    this.setState({ todos: array })
+  }
+
   renderTodos = e => {
     return this.state.todos.map((todo, idx) => {
       console.log('render todo', todo);
-      return <Todo key={idx} data={todo} />
+      return (
+        <Todo
+          key={idx}
+          data={todo}
+          index={idx}
+          onDelete={this.handleDelete}/>
+      )
+
     })
   }
 
@@ -42,9 +59,9 @@ class App extends Component {
           onChange={this.handleChange}
           onSubmit={this.handleSubmit}
         />
-        <ul>
+        <div className="todo-container">
           {this.renderTodos()}
-        </ul>
+        </div>
 
       </div>
     );
