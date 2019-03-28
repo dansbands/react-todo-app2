@@ -7,7 +7,7 @@ import Todo from './components/todo.js'
 class App extends Component {
   state = {
     value: '',
-    todos: ['abc'],
+    todos: ['abc', '123', 'howdy'],
   }
 
   handleChange = e => {
@@ -25,8 +25,25 @@ class App extends Component {
     })
   }
 
+  handleReorderUp = index => {
+    let array = this.state.todos;
+
+    if (index > 0) {
+      array.splice(index - 1, 0, array.splice(index, 1)[0]);
+      this.setState({ todos: array })
+    }
+  }
+
+  handleReorderDown = index => {
+    let array = this.state.todos;
+    if (index < array.length - 1) {
+      array.splice(index + 1, 0, array.splice(index, 1)[0]);
+      this.setState({ todos: array })
+    }
+  }
+
   handleEdit = e => {
-    
+
   }
 
   handleDelete = index => {
@@ -37,12 +54,14 @@ class App extends Component {
 
   renderTodos = e => {
     return this.state.todos.map((todo, idx) => {
-      console.log('render todo', todo);
+      // console.log('render todo', todo);
       return (
         <Todo
           key={idx}
           data={todo}
           index={idx}
+          orderUp={this.handleReorderUp}
+          orderDown={this.handleReorderDown}
           onDelete={this.handleDelete}/>
       )
 

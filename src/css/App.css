@@ -33,3 +33,30 @@
 .glyphicon-trash:hover {
   color: red;
 }
+
+.panel {
+  margin: 0
+}
+
+.panel-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.width-80 {
+  width: 80%;
+}
+
+.chevrons {
+  display: flex;
+  flex-direction: column;
+}
+
+.chevrons > span {
+  color: grey;
+}
+
+.chevrons > span:hover {
+  color: lightblue;
+}
