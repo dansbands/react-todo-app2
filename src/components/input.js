@@ -12,7 +12,7 @@ class Input extends React.Component {
             onChange={this.props.onChange}
             />
 
-          <button className="btn btn-default col-md-3">Submit</button>
+          <button className="btn btn-default">Submit</button>
         </div>
       </form>
     )
