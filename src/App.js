@@ -101,12 +101,14 @@ class App extends Component {
     // console.log('todos', this.state);
     return (
       <div className="App">
-        <h3>React To-Do App</h3>
-        <Input
-          value={this.state.value}
-          onChange={this.handleChange}
-          onSubmit={this.handleSubmit}
-        />
+        <header>
+          <h3>React To-Do App</h3>
+          <Input
+            value={this.state.value}
+            onChange={this.handleChange}
+            onSubmit={this.handleSubmit}
+            />
+        </header>
         <div className="todo-container">
           {this.renderTodos()}
         </div>

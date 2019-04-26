@@ -3,14 +3,17 @@ import React from 'react'
 class Input extends React.Component {
   render () {
     return (
-      <form onSubmit={this.props.onSubmit}>
-        <input
-          type="text"
-          value={this.props.value}
-          onChange={this.props.onChange}
-        />
+      <form className="form-inline" onSubmit={this.props.onSubmit}>
+        <div className="row">
+          <input
+            className="form-control col-md-9"
+            type="text"
+            value={this.props.value}
+            onChange={this.props.onChange}
+            />
 
-      <button>Submit</button>
+          <button className="btn btn-default col-md-3">Submit</button>
+        </div>
       </form>
     )
   }
