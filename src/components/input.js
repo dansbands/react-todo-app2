@@ -6,7 +6,7 @@ class Input extends React.Component {
       <form className="form-inline" onSubmit={this.props.onSubmit}>
         <div className="row">
           <input
-            className="form-control col-md-9"
+            className="form-control"
             type="text"
             value={this.props.value}
             onChange={this.props.onChange}

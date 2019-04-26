@@ -28,7 +28,7 @@
 
 .todo-container {
   /* width: 33%; */
-  margin: 10px auto;
+  margin: 20px auto;
 }
 
 .glyphicon-trash:hover {
@@ -69,4 +69,8 @@
 header {
   padding: 20px;
   border-bottom: 1px solid lightgrey;
+}
+
+header > h3 {
+  margin-bottom: 30px;
 }
