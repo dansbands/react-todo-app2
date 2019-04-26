@@ -2,7 +2,7 @@
   "name": "react-todo-app2",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://dansbands.github.io/react-todo-app2/",
+  "homepage": "https://dansbands.github.io/react-todo-app2",
   "dependencies": {
     "react": "^16.8.5",
     "react-dom": "^16.8.5"
