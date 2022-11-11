@@ -1,82 +1,79 @@
-import React, { Component } from 'react';
-import './css/App.css';
+import React, { Component } from "react";
+import "./css/App.css";
 
-import Input from './components/input.js'
-import Todo from './components/todo.js'
+import Input from "./components/input.js";
+import Todo from "./components/todo.js";
 
 class App extends Component {
   state = {
-    value: '',
-    todos: ['abc', '123', 'howdy'],
-    editing: -1,
-  }
+    value: "",
+    todos: ["abc", "123", "howdy", "hello!"],
+    editing: -1
+  };
 
-  handleChange = e => {
-    this.setState({ value: e.target.value })
-  }
+  handleChange = (e) => {
+    this.setState({ value: e.target.value });
+  };
 
-  handleSubmit = e => {
-    e.preventDefault()
+  handleSubmit = (e) => {
+    e.preventDefault();
     this.setState({
-      todos: [
-        ...this.state.todos,
-        this.state.value
-      ],
-      value: ''
-    })
-  }
+      todos: [...this.state.todos, this.state.value],
+      value: ""
+    });
+  };
 
-  handleReorderUp = index => {
+  handleReorderUp = (index) => {
     let array = this.state.todos;
 
     if (index > 0) {
       array.splice(index - 1, 0, array.splice(index, 1)[0]);
-      this.setState({ todos: array })
+      this.setState({ todos: array });
     }
-  }
+  };
 
-  handleReorderDown = index => {
+  handleReorderDown = (index) => {
     let array = this.state.todos;
 
     if (index < array.length - 1) {
       array.splice(index + 1, 0, array.splice(index, 1)[0]);
-      this.setState({ todos: array })
+      this.setState({ todos: array });
     }
-  }
+  };
 
   toggleEdit = (index) => {
-    let value = this.state.todos[index]
+    let value = this.state.todos[index];
 
     this.setState({
       editing: index,
       editValue: value
-    })
-  }
+    });
+  };
 
-  handleEdit = e => {
+  handleEdit = (e) => {
     this.setState({
       editValue: e.target.value
-    })
-  }
+    });
+  };
 
-  submitEdit = index => {
+  submitEdit = (index) => {
     let array = this.state.todos;
-    array[index] = this.state.editValue
+    array[index] = this.state.editValue;
 
     this.setState({
       todos: array,
-      editValue: '',
-      editing: -1,
-    })
-  }
+      editValue: "",
+      editing: -1
+    });
+  };
 
-  handleDelete = index => {
+  handleDelete = (index) => {
     let array = this.state.todos;
     array.splice(index, 1);
-    this.setState({ todos: array })
-  }
+    this.setState({ todos: array });
+  };
 
-  renderTodos = e => {
+  renderTodos = (e) => {
     return this.state.todos.map((todo, idx) => {
       // console.log('render todo', todo);
       return (
@@ -91,11 +88,11 @@ class App extends Component {
           submitEdit={this.submitEdit}
           orderUp={this.handleReorderUp}
           orderDown={this.handleReorderDown}
-          onDelete={this.handleDelete}/>
-      )
-
-    })
-  }
+          onDelete={this.handleDelete}
+        />
+      );
+    });
+  };
 
   render() {
     // console.log('todos', this.state);
@@ -107,12 +104,9 @@ class App extends Component {
             value={this.state.value}
             onChange={this.handleChange}
             onSubmit={this.handleSubmit}
-            />
+          />
         </header>
-        <div className="todo-container">
-          {this.renderTodos()}
-        </div>
-
+        <div className="todo-container">{this.renderTodos()}</div>
       </div>
     );
   }
